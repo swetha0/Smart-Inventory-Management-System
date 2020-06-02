@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionManager {
-
 	public static Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.OracleDriver");
 		Connection con = null;
@@ -12,8 +11,6 @@ public class ConnectionManager {
 		
 		if(con != null)
 			System.out.println("Connection Established");
-		
 		return con;
-		
 	}
 }

@@ -1,10 +1,8 @@
 package model;
 
 public class SignUp {
-	//variables
 	private String name, email, password, confirmPassword;
 
-	//Constructor
 	public SignUp(String name, String password, String confirmPassword, String email) {
 		super();
 		this.name = name;
@@ -14,7 +12,6 @@ public class SignUp {
 		
 	}
 
-	//getters and setters
 	public String getName() {
 		return name;
 	}
