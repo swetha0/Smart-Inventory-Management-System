@@ -49,7 +49,7 @@ public class RegistrationValidation{
 		return true;
 	  else
 	  {
-		  System.out.println("UserName must be Alphanumeric");
+		  System.out.println("Invalid Email");
 		  return false;
 	  }	
   	}

@@ -10,7 +10,7 @@ import model.SignUp;
 public class Main {
 	
 	public static void main(String args[]) throws Exception {
-		String username = null,password,confirmPassword,name,email;
+		String username = null,password,confirmPassword = null,name = null,email = null;
 		boolean validate=false;
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));      
 			
@@ -28,7 +28,6 @@ public class Main {
 			//perform operation from user option
 			switch (option) {
 				case 1://SignUp
-					
 						System.out.println("Hello! Welcome to **Smart Inventory Management System \n You are registering your details as an User \n");
 						System.out.println("Enter Your Name:");
 						name = br.readLine();
@@ -46,35 +45,38 @@ public class Main {
 							signup.setEmail(email);
 							signup.setPassword(password);
 							signup.setConfirmPassword(confirmPassword);
-							printDetails(signup);
-							System.out.println("Successfully Registred as a User\n-----------------------------------------------\n");
+							int checkuser=userdao.addUserDetails(signup);
+							if(checkuser!=0)
+							{
+								printDetails(signup);
+								System.out.println("Successfully Registred as a User\n-----------------------------------------------\n");
+							}
+							
 						} else 
 							System.out.println("Invalid Details! Please Enter valid Details\n-----------------------------------------------\n");
 						main(args);
-						//bufferedReader.close();
 				break;
-				case 2:
+				case 2://Login
 					do{
 						System.out.println("Enter email :");
 						email = br.readLine(); 
 						System.out.println("Enter password :");
 						password = br.readLine();
-						if(userdao.checkUserCredentials(username, password)) {
+						if(userdao.checkUserCredentials(email, password)) {
 							validate = true;
 							System.out.println("Successfully logged in!\n-----------------------------------------------\n");
 						}	
 						else
-						System.out.println("Invalid username/password\n-----------------------------------------------\n");
+						System.out.println("Invalid Data\n-----------------------------------------------\n");
 						main(args);
 					}while(!validate);
 				break;
-					case 3:
+					case 3://Admin
 						System.out.println("Entering into AdminMain block");
 						System.out.println("Enter Username: ");
 						username = br.readLine();
 						System.out.println("Enter Password: ");
 						password = br.readLine();
-						//check the crededtials of admin 
 						if(userdao.checkAdminCredentials(username, password)) {
 							validate = true;
 							System.out.println("Successfully Logged in as Admin\n-----------------------------------------------\n");

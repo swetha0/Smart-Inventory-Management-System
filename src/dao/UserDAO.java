@@ -3,8 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import model.Login;
+import model.SignUp;
 import service.UserDaoInterface;
 import utility.ConnectionManager;
 
@@ -28,12 +30,12 @@ public class UserDAO implements UserDaoInterface{
 	}
 
 	@Override
-	public boolean checkUserCredentials(String username, String password) throws Exception {
-		Login login=new Login(username,password);
+	public boolean checkUserCredentials(String email, String password) throws Exception {
+		Login login=new Login(email,password);
 		boolean status = false;
 		try {
 			Connection con=ConnectionManager.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("select * from customerData where email = ? and password = ? ");
+			PreparedStatement pstmt = con.prepareStatement("select * from customerData1 where email = ? and password = ? ");
 			
 			pstmt.setString(1, login.getUsername());
 			pstmt.setString(2, login.getPassword());
@@ -46,16 +48,24 @@ public class UserDAO implements UserDaoInterface{
 		return status;
 	}
 
-	@Override
-	public void addUserDetails(String name, String password, String confirmPassword, String email) throws Exception {
+	public int addUserDetails(SignUp signup) throws Exception {
+		int result=0;
+		try {
+			
 		Connection con=ConnectionManager.getConnection();
-		PreparedStatement pstmt = con.prepareStatement("insert into customerData(name,password,email) values(?,?,?)");
-		
-		pstmt.setString(1,name);
-		pstmt.setString(2, password);
-		pstmt.setString(3, email);
-		pstmt.executeUpdate();
-		
+		PreparedStatement pstmt = con.prepareStatement("insert into customerData1(name,password,email) values(?,?,?)");
+		pstmt.setString(1, signup.getName());
+		pstmt.setString(2, signup.getPassword());
+		pstmt.setString(3,signup.getEmail());
+		pstmt.executeUpdate(); 
+		result=1;
+		return result;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e);
+		}
+		return result;
 	}
 
 }
