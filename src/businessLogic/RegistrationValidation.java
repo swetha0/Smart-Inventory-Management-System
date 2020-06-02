@@ -19,7 +19,6 @@ public class RegistrationValidation{
 	}
 
 	//passwords validation
-	
 	private boolean validPassword(String password, String confirmPassword) {
 		 pattern = Pattern.compile(PASSWORD_PATTERN);
 		 if(password.equals(confirmPassword)) {
@@ -36,7 +35,6 @@ public class RegistrationValidation{
 		 System.out.println("password and confirm password must be same");
 		 return false;
 	}
-
 
 	//Username validation	 
 	private boolean isValidEmail(String s) 
