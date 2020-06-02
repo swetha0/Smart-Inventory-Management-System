@@ -10,7 +10,7 @@ import model.SignUp;
 public class Main {
 	
 	public static void main(String args[]) throws Exception {
-		String username,password,confirmPassword,name,email;
+		String username = null,password,confirmPassword,name,email;
 		boolean validate=false;
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));      
 			
@@ -59,7 +59,7 @@ public class Main {
 						email = br.readLine(); 
 						System.out.println("Enter password :");
 						password = br.readLine();
-						if(userdao.checkUserCredentials(email, password)) {
+						if(userdao.checkUserCredentials(username, password)) {
 							validate = true;
 							System.out.println("Successfully logged in!\n-----------------------------------------------\n");
 						}	

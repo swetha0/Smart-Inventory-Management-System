@@ -28,8 +28,8 @@ public class UserDAO implements UserDaoInterface{
 	}
 
 	@Override
-	public boolean checkUserCredentials(String email, String password) throws Exception {
-		Login login=new Login(email,password);
+	public boolean checkUserCredentials(String username, String password) throws Exception {
+		Login login=new Login(username,password);
 		boolean status = false;
 		try {
 			Connection con=ConnectionManager.getConnection();
