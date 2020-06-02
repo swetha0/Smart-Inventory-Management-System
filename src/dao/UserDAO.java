@@ -3,10 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import model.Login;
-import model.SignUp;
 import service.UserDaoInterface;
 import utility.ConnectionManager;
 
@@ -48,24 +45,15 @@ public class UserDAO implements UserDaoInterface{
 		return status;
 	}
 
-	public int addUserDetails(SignUp signup) throws Exception {
-		int result=0;
-		try {
-			
+	@Override
+	public void addUserDetails(String name, String password, String confirmPassword, String email) throws Exception {
 		Connection con=ConnectionManager.getConnection();
 		PreparedStatement pstmt = con.prepareStatement("insert into customerData1(name,password,email) values(?,?,?)");
-		pstmt.setString(1, signup.getName());
-		pstmt.setString(2, signup.getPassword());
-		pstmt.setString(3,signup.getEmail());
-		pstmt.executeUpdate(); 
-		result=1;
-		return result;
-		}
-		catch(SQLException e)
-		{
-			System.out.println(e);
-		}
-		return result;
-	}
-
+		
+		pstmt.setString(1,name);
+		pstmt.setString(2, password);
+		pstmt.setString(3, email);
+		pstmt.executeUpdate();
+	}		
 }
+

@@ -45,13 +45,9 @@ public class Main {
 							signup.setEmail(email);
 							signup.setPassword(password);
 							signup.setConfirmPassword(confirmPassword);
-							int checkuser=userdao.addUserDetails(signup);
-							if(checkuser!=0)
-							{
+							userdao.addUserDetails(name, password,confirmPassword, email);
 								printDetails(signup);
 								System.out.println("Successfully Registred as a User\n-----------------------------------------------\n");
-							}
-							
 						} else 
 							System.out.println("Invalid Details! Please Enter valid Details\n-----------------------------------------------\n");
 						main(args);
