@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import model.Login;
 
 public class AdminMain {
-	private static final int Id = 0;
 	static Login login;
 	static BufferedReader br;
 	static String password=null,username=null;

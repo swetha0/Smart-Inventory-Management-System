@@ -15,9 +15,11 @@ public class UserDAO implements UserDaoInterface{
 		boolean status=false;
 		try {
 			Connection con=ConnectionManager.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("select * from admin where username = ? and password = ? ");
+			PreparedStatement pstmt = con.prepareStatement("select * from Admin1 where username = ? and password = ? ");
+			
 			pstmt.setString(1,login.getUsername());
 			pstmt.setString(2,login.getPassword());
+			
 			ResultSet rs=pstmt.executeQuery();
 			status=rs.next();
 		}catch(Exception e) {

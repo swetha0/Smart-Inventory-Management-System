@@ -67,7 +67,7 @@ public class Main {
 						main(args);
 					}while(!validate);
 				break;
-					case 3://Admin
+				case 3://Admin
 						System.out.println("Entering into AdminMain block");
 						System.out.println("Enter Username: ");
 						username = br.readLine();
@@ -78,10 +78,10 @@ public class Main {
 							System.out.println("Successfully Logged in as Admin\n-----------------------------------------------\n");
 						}
 						else
-							System.out.println("Invalid username/password\n-----------------------------------------------\n");
+							System.out.println("Invalid username&password\n-----------------------------------------------\n");
 						main(args);
 				break;
-					default:
+				default:
 						System.out.println("Opps! this is not a valid option\n-----------------------------------------------\n");
 						main(args);
 		}// switch
