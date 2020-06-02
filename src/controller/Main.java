@@ -9,7 +9,7 @@ import model.SignUp;
 
 public class Main {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String args[]) throws Exception {
 		String username,password,confirmPassword,name,email;
 		boolean validate=false;
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));      
@@ -28,7 +28,7 @@ public class Main {
 			//perform operation from user option
 			switch (option) {
 				case 1://SignUp
-					do {
+					
 						System.out.println("Hello! Welcome to **Smart Inventory Management System \n You are registering your details as an User \n");
 						System.out.println("Enter Your Name:");
 						name = br.readLine();
@@ -47,10 +47,12 @@ public class Main {
 							signup.setPassword(password);
 							signup.setConfirmPassword(confirmPassword);
 							printDetails(signup);
-							System.out.println("Successfully Registred as a User");
+							System.out.println("Successfully Registred as a User\n-----------------------------------------------\n");
 						} else 
-							System.out.println("Invalid Details! Please Enter valid Details");
-					}while(!validate);
+							System.out.println("Invalid Details! Please Enter valid Details\n-----------------------------------------------\n");
+						main(args);
+						//bufferedReader.close();
+				break;
 				case 2:
 					do{
 						System.out.println("Enter email :");
@@ -59,10 +61,11 @@ public class Main {
 						password = br.readLine();
 						if(userdao.checkUserCredentials(email, password)) {
 							validate = true;
-							System.out.println("Successfully logged in!");
+							System.out.println("Successfully logged in!\n-----------------------------------------------\n");
 						}	
 						else
-						System.out.println("Invalid username/password");
+						System.out.println("Invalid username/password\n-----------------------------------------------\n");
+						main(args);
 					}while(!validate);
 				break;
 					case 3:
@@ -74,10 +77,15 @@ public class Main {
 						//check the crededtials of admin 
 						if(userdao.checkAdminCredentials(username, password)) {
 							validate = true;
-							System.out.println("Successfully Logged in as Admin");
+							System.out.println("Successfully Logged in as Admin\n-----------------------------------------------\n");
 						}
+						else
+							System.out.println("Invalid username/password\n-----------------------------------------------\n");
+						main(args);
+				break;
 					default:
-						System.out.println("Opps! this is not a valid option");
+						System.out.println("Opps! this is not a valid option\n-----------------------------------------------\n");
+						main(args);
 		}// switch
 	}// PSVM
 	private static void printDetails(SignUp signup) {
