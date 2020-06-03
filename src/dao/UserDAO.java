@@ -58,4 +58,3 @@ public class UserDAO implements UserDaoInterface{
 		pstmt.executeUpdate();
 	}		
 }
-
