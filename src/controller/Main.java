@@ -64,6 +64,21 @@ public class Main {
 						if(userdao.checkUserCredentials(email, password)) {
 							validate = true;
 							System.out.println("Successfully logged in!\n-----------------------------------------------\n");
+						}	
+						else
+						System.out.println("Invalid Data!\n-----------------------------------------------\n");
+						main(args);
+					}while(!validate);
+				break;
+				case 3://Admin
+						System.out.println("**********Admin Block***********");
+						System.out.println("Enter Username: ");
+						username = br.readLine();
+						System.out.println("Enter Password: ");
+						password = br.readLine();
+						if(userdao.checkAdminCredentials(username, password)) {
+							validate = true;
+							System.out.println("Successfully Logged in as Admin!\n-----------------------------------------------\n");
 							String adminDecision;
 							do {
 								System.out.println("---------1.Add Products to the store---------");
@@ -95,21 +110,6 @@ public class Main {
 								System.out.println("Do you want to continue:Yes/No");
 								adminDecision=br.readLine();
 							}while(adminDecision.equals("Yes"));
-						}	
-						else
-						System.out.println("Invalid Data!\n-----------------------------------------------\n");
-						main(args);
-					}while(!validate);
-				break;
-				case 3://Admin
-						System.out.println("**********Admin Block***********");
-						System.out.println("Enter Username: ");
-						username = br.readLine();
-						System.out.println("Enter Password: ");
-						password = br.readLine();
-						if(userdao.checkAdminCredentials(username, password)) {
-							validate = true;
-							System.out.println("Successfully Logged in as Admin!\n-----------------------------------------------\n");
 						}
 						else
 							System.out.println("Invalid username&password!\n-----------------------------------------------\n");

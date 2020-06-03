@@ -12,15 +12,21 @@ public class SuppplierDAO implements SupplierDaoInterface {
 	@Override
 	public void displayProductsFromSuppliers() throws Exception {
 		Connection con=ConnectionManager.getConnection();
-		PreparedStatement pstmt=con.prepareStatement("select * from supplierproducts");
+		PreparedStatement pstmt=con.prepareStatement("select * from suppliersProducts");
 		ResultSet rs=pstmt.executeQuery();
-		
+		System.out.printf("ID             Category         ProductName           Quantity        Price %n");
+		System.out.println("__________________________________________________________________________________");
+		while(rs.next()) {
+			
+		}
+		System.out.println("__________________________________________________________________________________");
 	}
 
 	@Override
 	public void removeSupplier(int supplierId) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Connection con=ConnectionManager.getConnection();
+		PreparedStatement pstmt=con.prepareStatement("delete from suppliersProducts where id="+supplierId);
+		pstmt.executeUpdate();
 	}
 
 }
