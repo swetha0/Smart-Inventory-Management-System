@@ -3,6 +3,7 @@ package controller;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import businessLogic.RegistrationValidation;
+import dao.SupplierDAO;
 import dao.UserDAO;
 import model.SignUp;
 
@@ -24,6 +25,7 @@ public class Main {
 			
 			//cretae objects for dao classes
 			UserDAO userdao = new UserDAO();
+			SupplierDAO supplierdao = new SupplierDAO();
 			
 			//perform operation from user option
 			switch (option) {
@@ -90,7 +92,7 @@ public class Main {
 								switch(adminChoice) {
 								case 1:
 									System.out.println("Products from the Suppliers:");
-									
+									supplierdao.displayProductsFromSuppliers();
 									break;
 								case 2:
 									System.out.println("To Remove Suppliers enter suppliersId");
