@@ -3,6 +3,7 @@ package controller;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import businessLogic.RegistrationValidation;
+import dao.StoreDAO;
 import dao.SupplierDAO;
 import dao.UserDAO;
 import model.SignUp;
@@ -26,6 +27,8 @@ public class Main {
 			//cretae objects for dao classes
 			UserDAO userdao = new UserDAO();
 			SupplierDAO supplierdao = new SupplierDAO();
+			StoreDAO storedao = new StoreDAO();
+		//	CustomerDAO customerdao = new CustomerDAO();
 			
 			//perform operation from user option
 			switch (option) {
@@ -93,18 +96,27 @@ public class Main {
 								case 1:
 									System.out.println("Products from the Suppliers:");
 									supplierdao.displayProductsFromSuppliers();
+									System.out.println("Give supplier Id to add :");
+									int supplierId = Integer.parseInt(br.readLine());
+									System.out.println("How many items you want to add :");
+									int quantity = Integer.parseInt(br.readLine());
+									storedao.addProductsToStore(supplierId,quantity);
 									break;
 								case 2:
-									System.out.println("To Remove Suppliers enter suppliersId");
-									
+									System.out.println("To Remove Suppliers enter supplierId");
+									supplierdao.displayProductsFromSuppliers();
+									System.out.println("Give supplier Id to remove :");
+									supplierId = Integer.parseInt(br.readLine());
+									supplierdao.removeSupplier(supplierId);
+									System.out.println("Successully removed supplier");
 									break;
 								case 3:
 									System.out.println("Products in Store");
-									
+									storedao.displayProductsInStore();
 									break;
 								case 4:
 									System.out.println("All customers purchases");
-									
+									//storedao.displayCustomerPurchases();
 									break;
 								default:
 									System.out.println("Opps This is not a valid option Admin!");

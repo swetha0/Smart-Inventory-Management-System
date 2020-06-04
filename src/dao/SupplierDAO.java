@@ -29,4 +29,4 @@ public class SupplierDAO implements SupplierDaoInterface {
 		pstmt.executeUpdate();
 	}
 
-}
+}	
