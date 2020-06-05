@@ -19,8 +19,7 @@ public class CustomerDAO implements CustomerDaoInterface {
 		System.out.printf("Name             Category         ProductName           Quantity        Price %n");
 		System.out.println("__________________________________________________________________________________");
 		while (rs.next()) {
-			System.out.printf("%-6s %15s %20s %15d %15d %n", rs.getString(1), rs.getString(2), rs.getString(3),
-					rs.getInt(4), rs.getInt(5));
+			System.out.printf("%-6s %15s %20s %15d %15d %n", rs.getString("name"),rs.getString("category"),rs.getString("productname"),rs.getInt("quantity"),rs.getInt("price")*rs.getInt("quantity"));
 		}
 		System.out.println("__________________________________________________________________________________");
 	}

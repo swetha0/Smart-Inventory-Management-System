@@ -75,8 +75,9 @@ public class StoreDAO implements StoreDaoInterface {
 		System.out.println(
 				"______________________________________________________________________________________________");
 		while (rs.next()) {
-			System.out.printf("%-6d %10s %15s %20s %15d %15d %n", rs.getInt(1), rs.getString(2), rs.getString(3),
-					rs.getString(4), rs.getInt(5), rs.getInt(6) * rs.getInt(5));
+			System.out.printf("%-6d %10s %15s %20s %15d %15d %n", rs.getInt("id"), rs.getString("name"),
+					rs.getString("category"), rs.getString("productname"), rs.getInt("quantity"),
+					rs.getInt("price") * rs.getInt("quantity"));
 		}
 		System.out.println(
 				"______________________________________________________________________________________________");
