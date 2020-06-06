@@ -72,7 +72,7 @@ public class Main {
 					validate = true;
 					System.out.println("Successfully logged in!\n-----------------------------------------------\n");
 					storedao.displayProductsInStore();
-					String userDecision;
+					String userDecision, value;
 					do {
 						System.out.println("Enter product Id to buy that product");
 						int productId = Integer.parseInt(br.readLine());
@@ -82,7 +82,8 @@ public class Main {
 						customerdao.displayCustomerPurchases(email);
 						System.out.println("Do you want to buy one more product : yes/no");
 						userDecision = br.readLine();
-					} while (userDecision.equals("yes"));
+						value = userDecision.toLowerCase();
+					} while (value.equals("yes"));
 				} else
 					System.out.println("Invalid Data!\n-----------------------------------------------\n");
 				main(args);

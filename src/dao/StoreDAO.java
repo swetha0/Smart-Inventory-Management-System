@@ -15,14 +15,6 @@ public class StoreDAO implements StoreDaoInterface {
 		PreparedStatement p = con.prepareStatement("select quantity from suppliersproducts where id =" + supplierId);
 		ResultSet result = p.executeQuery();
 		result.next();
-//		while (result.next()) {
-//			System.out.println(result.getInt("Id"));s
-//			if (result.getInt("Id") == supplierId) {
-//				System.out.println("done");
-//			}
-//		}
-//		System.out.println("invalid Id");
-
 		if (result.getInt("quantity") - quantity < 0) {
 			System.out.println("Doesn't have enough quantity in store");
 		} else {
@@ -42,7 +34,7 @@ public class StoreDAO implements StoreDaoInterface {
 				pstmt2.setString(2, rs.getString("productName"));
 				pstmt2.setString(3, rs.getString("category"));
 				pstmt2.setString(4, rs.getString("brand"));
-				pstmt2.setInt(5, rs.getInt("quantity"));
+				pstmt2.setInt(5, quantity);
 				pstmt2.setInt(6, rs.getInt("price"));
 
 				if (pstmt2.executeUpdate() != 0) {
@@ -72,7 +64,6 @@ public class StoreDAO implements StoreDaoInterface {
 			}
 			System.out.println("Successully added products to store");
 		}
-
 	}
 
 	@Override
@@ -98,16 +89,13 @@ public class StoreDAO implements StoreDaoInterface {
 		Connection con = ConnectionManager.getConnection();
 		PreparedStatement pstmt = con.prepareStatement("select * from productsInStore");
 		ResultSet rs = pstmt.executeQuery();
-		System.out.printf(
-				"ProductId    ProductName            Category                   Brand              Quantity         Price %n");
-		System.out.println(
-				"___________________________________________________________________________________________________________");
+		System.out.printf("ID             Category         ProductName           Quantity        Price %n");
+		System.out.println("__________________________________________________________________________________");
 		while (rs.next()) {
-			System.out.printf("%-10d %-25s %-25s %-20s %-15d %-15d %n", rs.getInt(1), rs.getString(2), rs.getString(3),
-					rs.getString(4), rs.getInt(5), rs.getInt(6));
+			System.out.printf("%-6d %15s %20s %15d %15d %n", rs.getInt("productid"), rs.getString("category"),
+					rs.getString("productname"), rs.getInt("quantity"), rs.getInt("price"));
 		}
-		System.out.println(
-				"___________________________________________________________________________________________________________");
+		System.out.println("__________________________________________________________________________________");
 	}
 
 }

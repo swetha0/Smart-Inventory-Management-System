@@ -27,7 +27,7 @@ public class SupplierDAO implements SupplierDaoInterface {
 	@Override
 	public void removeSupplier(int supplierId) throws Exception {
 		Connection con = ConnectionManager.getConnection();
-		PreparedStatement pstmt = con.prepareStatement("delete from supplierproducts where id=" + supplierId);
+		PreparedStatement pstmt = con.prepareStatement("delete from suppliersproducts where id=" + supplierId);
 		pstmt.executeUpdate();
 	}
 }
