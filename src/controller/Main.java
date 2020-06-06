@@ -98,12 +98,13 @@ public class Main {
 				validate = true;
 				System.out
 						.println("Successfully Logged in as Admin!\n-----------------------------------------------\n");
-				String adminDecision;
+				String adminDecision, value;
 				do {
 					System.out.println("---------1.Add Products to the store---------");
-					System.out.println("---------2.Remove Suppliers-----------");
+					System.out.println("---------2.Remove Suppliers-------------------");
 					System.out.println("---------3.View all products in store----------");
 					System.out.println("---------4.View all customer purchases----------");
+					System.out.println("---------5.list of Customers Details------------");
 					// take admin choice to perform some operations
 					int adminChoice = Integer.parseInt(br.readLine());
 					switch (adminChoice) {
@@ -132,12 +133,16 @@ public class Main {
 						System.out.println("All customers purchases");
 						storedao.displayCustomerPurchases();
 						break;
+					case 5:
+						userdao.displayCustomerDetails();
+						break;
 					default:
 						System.out.println("Opps This is not a valid option Admin!");
 					}
 					System.out.println("Do you want to continue:Yes/No");
 					adminDecision = br.readLine();
-				} while (adminDecision.equals("Yes"));
+					value = adminDecision.toLowerCase();
+				} while (value.equals("yes"));
 			} else
 				System.out.println("Invalid username&password!\n-----------------------------------------------\n");
 			main(args);

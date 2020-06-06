@@ -59,4 +59,19 @@ public class UserDAO implements UserDaoInterface {
 		pstmt.setString(3, email);
 		pstmt.executeUpdate();
 	}
+
+	@Override
+	public void displayCustomerDetails() throws Exception {
+		Connection con = ConnectionManager.getConnection();
+		PreparedStatement pstmt = con.prepareStatement("select * from customerData");
+		ResultSet rs = pstmt.executeQuery();
+		System.out.printf("name          email %n");
+		System.out.println("__________________________________________________________________________________");
+		while (rs.next()) {
+			System.out.printf("%-10s %-20s %n", rs.getString("name"), rs.getString("email"));
+		}
+		System.out.println(
+				"_____________________________________________________________________________________________________________________________________________");
+
+	}
 }

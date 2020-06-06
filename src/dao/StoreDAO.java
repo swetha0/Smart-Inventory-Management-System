@@ -15,12 +15,22 @@ public class StoreDAO implements StoreDaoInterface {
 		PreparedStatement p = con.prepareStatement("select quantity from suppliersproducts where id =" + supplierId);
 		ResultSet result = p.executeQuery();
 		result.next();
+//		while (result.next()) {
+//			System.out.println(result.getInt("Id"));s
+//			if (result.getInt("Id") == supplierId) {
+//				System.out.println("done");
+//			}
+//		}
+//		System.out.println("invalid Id");
+
 		if (result.getInt("quantity") - quantity < 0) {
 			System.out.println("Doesn't have enough quantity in store");
 		} else {
+
 			PreparedStatement pstmt = con.prepareStatement(
 					"select productsinstore.productid from productsinstore,suppliersproducts where productsinstore.productid =suppliersproducts.productid and suppliersproducts.id="
 							+ supplierId);
+
 			if (pstmt.executeUpdate() == 0) {
 				PreparedStatement pstmt1 = con.prepareStatement(
 						"select * from suppliersproducts where id =" + supplierId + " and quantity >=" + quantity + "");
@@ -32,10 +42,10 @@ public class StoreDAO implements StoreDaoInterface {
 				pstmt2.setString(2, rs.getString("productName"));
 				pstmt2.setString(3, rs.getString("category"));
 				pstmt2.setString(4, rs.getString("brand"));
-				pstmt2.setInt(5, quantity);
+				pstmt2.setInt(5, rs.getInt("quantity"));
 				pstmt2.setInt(6, rs.getInt("price"));
-				if (pstmt2.executeUpdate() != 0) {
 
+				if (pstmt2.executeUpdate() != 0) {
 					PreparedStatement pstmt3 = con
 							.prepareStatement("update suppliersproducts set quantity = quantity-? where id = ?");
 					pstmt3.setInt(1, quantity);
